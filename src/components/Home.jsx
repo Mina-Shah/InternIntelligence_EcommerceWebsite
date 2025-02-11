@@ -52,7 +52,7 @@ const Home = () => {
     <Search/>
       <div className="container mx-auto p-6">
         {/* Hero Section */}
-        <div className="bg-blue-950 text-white text-center p-10 rounded-2xl shadow-lg">
+        <div className="bg-blue-900 text-white text-center p-10 rounded-2xl shadow-lg">
           <h1 className="text-4xl font-bold">Step into Comfort and Style</h1>
           <p className="mt-2">Discover the latest trends in footwear</p>
           <button

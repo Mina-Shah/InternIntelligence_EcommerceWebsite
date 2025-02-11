@@ -23,8 +23,8 @@ const SignIn = () => {
 
   return (
     <div className="flex justify-center items-center h-screen animate-slide-in-up">
-      <div className="w-11/12 max-w-md p-6 rounded border border-blue-800">
-        <h1 className="text-blue-800 text-4xl font-bold mb-6 text-center">
+      <div className="w-11/12 max-w-md p-6 rounded border border-blue-900">
+        <h1 className="text-blue-900 text-4xl font-bold mb-6 text-center">
           Sign In
         </h1>
 
