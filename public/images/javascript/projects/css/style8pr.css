@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: url(tictac.webp) no-repeat center;
+    background-size: 200%;
+    text-align: center;
+}
+
+h1{
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 40px;
+}
+
+.container{
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game{
+    height: 60vmin;
+     width: 60vmin;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vmin;
+}
+
+.box{
+   height: 18vmin;
+   width: 18vmin;
+   border-radius: 1rem;
+   border: 2px solid white;
+   box-shadow: 0 0 1rem rgba(0, 0, 0 , 0.5);
+   font-size: 8vmin;
+   /* color: red; */
+   background-color: black;  
+}
+
+#reset-btn{
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1.25rem;
+}
+
+#new-btn{
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1.25rem;
+}
+
+.msg-container{
+    height: 100vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+
+}
+
+#msg{
+    color: white;
+    font-size: 10vmin;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.hide{
+    display: none;
+}
+
+.styleO{
+    color: yellow;
+}
+
+.styleX{
+    color: red;
+}
