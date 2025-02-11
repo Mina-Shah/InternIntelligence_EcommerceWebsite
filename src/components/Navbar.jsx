@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,29 +15,29 @@ const Navbar = () => {
         </div>
 
         <ul
-          className={`md:flex space-x-6 absolute md:static bg-blue-950 md:bg-transparent top-16 left-0 w-full md:w-auto md:flex-row flex-col items-center md:items-baseline transition-all duration-300 ease-in ${
+          className={`md:flex lg:space-x-6 absolute md:static bg-blue-950 md:bg-transparent top-16 left-0 w-full md:w-auto md:flex-row flex-col items-center md:items-baseline transition-all duration-300 ease-in ${
             isOpen ? "flex" : "hidden"
           }`}
         >
           <li className="py-2 md:py-0">
-            <a href="/" className="hover:text-orange-500">
+            <Link to="/" className="hover:text-orange-500">
               Home
-            </a>
+            </Link>
           </li>
           <li className="py-2 md:py-0">
-            <a href="/products" className="hover:text-orange-500">
+            <Link to="/products" className="hover:text-orange-500">
               Categories
-            </a>
+            </Link>
           </li>
           <li className="py-2 md:py-0">
-            <a href="/cart" className="hover:text-orange-500">
+            <Link to="/cart" className="hover:text-orange-500">
               Cart
-            </a>
+            </Link>
           </li>
           <li className="py-2 md:py-0">
-            <a href="/contact" className="hover:text-orange-500">
+            <Link to="/contact" className="hover:text-orange-500">
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
