@@ -40,16 +40,16 @@ const promotions = [
     title: "Don't miss out!",
     description: "Exclusive deal on selected footwear.",
     image:
-    "https://www.ndure.com/cdn/shop/files/1_1b01031e-89cd-4427-9177-85e714b3813d.jpg?v=1726465453&width=493",
- },
+      "https://www.ndure.com/cdn/shop/files/1_1b01031e-89cd-4427-9177-85e714b3813d.jpg?v=1726465453&width=493",
+  },
 ];
 
 const Home = () => {
-    const navigate = useNavigate();
-  
+  const navigate = useNavigate();
+
   return (
     <>
-    <Search/>
+      <Search />
       <div className="container mx-auto p-6">
         {/* Hero Section */}
         <div className="bg-blue-900 text-white text-center p-10 rounded-2xl shadow-lg">
@@ -73,8 +73,7 @@ const Home = () => {
               <div
                 key={promo.id}
                 className="p-4 text-center border rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
-            onClick={() => navigate(`/product/${item.id}`)}       >
-            
+              >
                 <img
                   src={promo.image}
                   alt={promo.title}
@@ -84,6 +83,12 @@ const Home = () => {
                   {promo.title}
                 </h3>
                 <p className="text-gray-600">{promo.description}</p>
+                <button
+                className="mt-2 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700"
+                onClick={() => navigate(`/products`)}
+              >
+                Buy Now
+              </button>
               </div>
             ))}
           </div>
@@ -99,7 +104,8 @@ const Home = () => {
               <div
                 key={product.id}
                 className="p-4 text-center border rounded-lg hover:shadow-xl"
-              >
+                onClick={() => navigate(`/products`)}
+            >
                 <img
                   src={product.image}
                   alt={product.name}
