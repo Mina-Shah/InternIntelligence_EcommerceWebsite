@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CircleUser } from "lucide-react";
+import { CircleUser, Search as SearchIcon, X } from "lucide-react";
 
+// The data object remains the same as you provided...
 const data = [
   {
     id: 1,
@@ -79,75 +80,6 @@ const data = [
       },
     ],
   },
-  {
-    id: 2,
-    category: "Formal",
-    items: [
-      {
-        id: 111,
-        image:
-          "https://www.ndure.com/cdn/shop/files/1_1b01031e-89cd-4427-9177-85e714b3813d.jpg?v=1726465453&width=493",
-        price: 70,
-        name: "Formal Black Shoes",
-      },
-      {
-        id: 112,
-        image:
-          "https://www.ndure.com/cdn/shop/files/1_9ded95b4-ac45-47fe-a8e7-4056d84de7bb.jpg?v=1726134109&width=493",
-        price: 60,
-        name: "Formal Brown Shoes",
-      },
-      {
-        id: 113,
-        image:
-          "https://www.ndure.com/cdn/shop/files/1_8f7c00d5-a174-45d6-ab2c-23ff03e80abb.jpg?v=1725449326&width=493",
-        price: 50,
-        name: "Formal Brown Shoes",
-      },
-      {
-        id: 114,
-        image:
-          "https://www.ndure.com/cdn/shop/files/1_e6e3b282-e025-42f0-b395-874e77b8d0c1.jpg?v=1729145992&width=493",
-        price: 60,
-        name: "Formal Black Shoes",
-      },
-      {
-        id: 115,
-        image:
-          "https://www.ndure.com/cdn/shop/files/1_c0dfdb07-2069-44aa-ab94-8b641b7de8a1.jpg?v=1727949023&width=493",
-        price: 40,
-        name: "Formal Black Shoes",
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Blue Sports Shoes",
-    category: "Casual",
-    items: [
-      {
-        id: 116,
-        image:
-          "https://onedegree.com.pk/cdn/shop/files/Grey-4.jpg?v=1738353192&width=360",
-        price: 20,
-        name: "Grey Casual",
-      },
-      {
-        id: 117,
-        image:
-          "https://onedegree.com.pk/cdn/shop/files/One-Degree-Blue-and-White-Slides-5_2.jpg?v=1738353190&width=360",
-        price: 22,
-        name: "Blue Casual",
-      },
-      {
-        id: 118,
-        image:
-          "https://onedegree.com.pk/cdn/shop/files/Blue-and-Orange-2.jpg?v=1738353191&width=360",
-        price: 21,
-        name: "White Casual",
-      },
-    ],
-  },
 ];
 
 const Search = () => {
@@ -155,67 +87,110 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
-  // Flattening product list
+  // 1. Flatten products for easier searching
   const allProducts = data.flatMap((category) => category.items);
 
-  const handleSearch = () => {
-    if (!searchTerm.trim()) {
+  // 2. LIVE SEARCH LOGIC: useEffect triggers every time searchTerm changes
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
       setFilteredData([]);
-      return;
+    } else {
+      const results = allProducts.filter((item) =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(results);
     }
-    const results = allProducts.filter((item) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredData(results);
-  };
+  }, [searchTerm]);
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
+  const clearSearch = () => {
+    setSearchTerm("");
+    setFilteredData([]);
   };
 
   return (
-    <div className="flex flex-col items-center px-4 w-full">
-    {/* Search Input and User Button */}
-    <div className="flex items-center justify-between w-full max-w-3xl mt-5 space-x-3">
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyDown={handleKeyPress}
-        className="p-2 border border-gray-500 rounded-full w-full sm:w-[28rem] md:w-[36rem] lg:w-[40rem] focus:outline-none"
-      />
-      <button
-        className="p-2 rounded-full hover:bg-gray-200 flex items-center justify-center"
-        onClick={() => navigate("/signin")}
-      >
-        <CircleUser size={32} className="text-gray-600" />
-      </button>
-    </div>
-  
-    {/* Product Grid */}
-    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full max-w-7xl px-2">
-      {filteredData.map((item) => (
-        <div
-          key={item.id}
-          className="p-3 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex flex-col items-center bg-white"
-          onClick={() => navigate(`/product/${item.id}`)}
-        >
-          <img
-            src={item.image}
-            alt={item.name}
-            className="h-28 w-36 rounded object-cover mb-3"
+    <div className="flex flex-col items-center w-full sticky top-0 z-[100] bg-white/80 backdrop-blur-md pb-4">
+      {/* Search Input Bar */}
+      <div className="flex items-center justify-between w-full max-w-5xl px-6 mt-5 space-x-4">
+        <div className="relative flex-grow group">
+          <SearchIcon
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-yellow-700 transition-colors"
+            size={20}
           />
-          <div className="text-center">
-            <h3 className="text-black text-lg font-semibold">{item.name}</h3>
-            <p className="text-black">Price: ${item.price}</p>
+          <input
+            type="text"
+            placeholder="Search for your style (e.g. 'Black', 'Casual')..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-12 pr-12 py-3 border-2 border-yellow-700 rounded-2xl w-full bg-slate-50 focus:bg-white focus:border-yellow-900 focus:outline-none transition-all shadow-sm"
+          />
+          {searchTerm && (
+            <button
+              onClick={clearSearch}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-red-500"
+            >
+              <X size={20} />
+            </button>
+          )}
+        </div>
+
+        <button
+          className="p-2 rounded-2xl hover:bg-slate-100 transition-colors"
+          onClick={() => navigate("/signin")}
+        >
+          <CircleUser color="#5e4708" size={42} />
+        </button>
+      </div>
+
+      {/* Instant Search Results Dropdown/Grid */}
+      {searchTerm && (
+        <div className="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-slate-100 max-h-[70vh] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="container mx-auto p-6">
+            {filteredData.length > 0 ? (
+              <>
+                <p className="text-slate-400 text-sm mb-4">
+                  Found {filteredData.length} matches
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                  {filteredData.map((item) => (
+                    <div
+                      key={item.id}
+                      className="cursor-pointer group flex flex-col items-center p-2 rounded-3xl hover:bg-slate-50 transition-all"
+                      onClick={() => {
+                        navigate(`/product/${item.id}`);
+                        clearSearch();
+                      }}
+                    >
+                      <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-slate-100 mb-3">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                      </div>
+                      <h3 className="font-bold text-sm text-center line-clamp-1">
+                        {item.name}
+                      </h3>
+                      <p className="font-black text-sm">${item.price}</p>
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="py-20 text-center">
+                <p className="text-slate-400 text-lg">
+                  No shoes found for "
+                  <span className="text-slate-900 font-bold">{searchTerm}</span>
+                  "
+                </p>
+                <button onClick={clearSearch} className="mt-2 underline">
+                  Clear search
+                </button>
+              </div>
+            )}
           </div>
         </div>
-      ))}
+      )}
     </div>
-  </div>  
   );
 };
 

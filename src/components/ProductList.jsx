@@ -33,8 +33,8 @@ const ProductList = () => {
 
   return (
     <div className="container mx-auto p-6 animate-slide-in-up">
-      <h1 className="text-blue-900 text-center text-3xl font-semibold mb-4">
-        Categories
+      <h1 className="text-yellow-700 text-center text-3xl font-semibold mb-4">
+        Featured
       </h1>
 
       <div className="flex justify-between items-center mb-6">
@@ -62,22 +62,22 @@ const ProductList = () => {
       {sortedProducts.length === 0 ? (
         <p className="text-center text-black">No products found.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="border-yellow-900 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
           {sortedProducts.map((item) => (
             <div
               key={item.id}
-              className="border p-4 rounded shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+              className="bg-gray-300 rounded shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
             >
               <img
                 src={item.image}
                 alt={item.name}
-                className="w-full h-40 object-cover rounded"
+                className="w-full object-cover h-60 "
               />
-              <h3 className="text-lg font-bold mt-2">{item.name}</h3>
-              <p className="text-gray-600">${item.price}</p>
-              <p className="text-sm text-gray-500">Category: {item.category}</p>
+              <h3 className="px-4 pt-5 text-yellow-700 text-lg font-bold mt-2">{item.name}</h3>
+              <p className="px-4 text-gray-600 font-bold">Rs {item.price}</p>
+              <p className="px-4 text-sm text-gray-500">Category: {item.category}</p>
               <button
-                className="mt-2 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700"
+                className="m-4 bg-yellow-400 text-white font-bold py-2 px-4 rounded-lg hover:bg-yellow-500"
                 onClick={() => navigate(`/product/${item.id}`)}
               >
                 Buy Now

@@ -9,6 +9,7 @@ import Checkout from "./components/Checkout";
 import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import TrackOrder from "./components/TrackOrder";
 import "./index.css";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/trackorder" element={<TrackOrder />} />
       </Routes>
       <Footer />
     </Router>

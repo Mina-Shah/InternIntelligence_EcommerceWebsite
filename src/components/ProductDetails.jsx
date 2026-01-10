@@ -66,7 +66,7 @@ const ProductDetails = () => {
           </div>
 
           <button
-            className="mt-6 w-full bg-blue-900 text-white font-semibold py-2 rounded-lg hover:bg-blue-950 transition duration-300"
+            className="mt-6 w-full bg-yellow-400 text-white font-semibold py-2 rounded-lg hover:bg-yellow-500 transition duration-300"
             onClick={addToCart}
           >
             Add to Cart

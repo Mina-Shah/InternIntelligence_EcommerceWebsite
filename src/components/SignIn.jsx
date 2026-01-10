@@ -23,8 +23,8 @@ const SignIn = () => {
 
   return (
     <div className="flex justify-center items-center h-screen animate-slide-in-up">
-      <div className="w-11/12 max-w-md p-6 rounded border border-blue-900">
-        <h1 className="text-blue-900 text-4xl font-bold mb-6 text-center">
+      <div className="w-11/12 max-w-md p-6 rounded border border-yellow-900">
+        <h1 className="text-yellow-700 text-4xl font-bold mb-6 text-center">
           Sign In
         </h1>
 
@@ -42,7 +42,7 @@ const SignIn = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 rounded border border-blue-900 focus:ring-2 focus:ring-blue-900 focus:outline-none"
+              className="w-full p-2 rounded border border-yellow-900 focus:ring-2 focus:ring-blue-900 focus:outline-none"
               placeholder="Enter your email"
               required
             />
@@ -60,7 +60,7 @@ const SignIn = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 rounded border border-blue-900 focus:ring-2 focus:ring-blue-900 focus:outline-none"
+              className="w-full p-2 rounded border border-yellow-900 focus:ring-2 focus:ring-blue-900 focus:outline-none"
               placeholder="Enter your password"
               required
             />
@@ -68,7 +68,7 @@ const SignIn = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-900 text-white py-2 rounded hover:bg-blue-950 transition-colors"
+            className="w-full bg-yellow-400 text-white py-2 rounded hover:bg-blue-950 transition-colors"
           >
             Sign In
           </button>

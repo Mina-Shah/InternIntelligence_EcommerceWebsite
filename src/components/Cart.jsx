@@ -32,7 +32,7 @@ const CartPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center mx-auto p-4 sm:p-6 max-w-6xl animate-slide-in-up">
-      <h2 className="text-center text-blue-900 text-2xl sm:text-3xl font-bold mb-4">
+      <h2 className="text-center text-yellow-700 text-2xl sm:text-3xl font-bold mb-4">
         Shopping Cart
       </h2>
       {cart.length === 0 ? (
@@ -93,7 +93,7 @@ const CartPage = () => {
               Total: $ {totalPrice}
             </h3>
             <button
-              className="bg-blue-900 text-white px-3 sm:px-4 py-2 rounded mt-2 hover:bg-blue-950"
+              className="bg-yellow-400 font-bold text-white px-3 sm:px-4 py-2 rounded mt-2 hover:bg-yellow-500"
               onClick={() => navigate("/checkout")}
             >
               Proceed to Checkout

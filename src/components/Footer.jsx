@@ -3,52 +3,99 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-900 text-slate-300 mt-10 py-8">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+    <footer className="bg-yellow-700 text-slate-300 mt-20 py-12 border-t-4 border-[#FFD700]">
+      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
         {/* Logo and Description */}
-        <div>
-          <h2 className="text-2xl font-bold">ShoeBrand</h2>
-          <p className="mt-2">
-            Your one-stop shop for stylish and comfortable shoes.
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-white">
+            SHOE<span className="text-[#FFD700]">POINT</span>
+            <span className="text-sm text-white font-normal italic">.pk</span>
+          </h2>
+          <p className="text-white leading-relaxed max-w-xs mx-auto md:mx-0">
+            Premium footwear for every step. We bring you the best selection of
+            sports, formal, and casual styles.
           </p>
         </div>
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-xl font-semibold">Quick Links</h3>
-          <ul className="mt-2 space-y-2">
-          <li>
-            <Link to="/products" className="hover:text-orange-500">
-              Shop
-            </Link>
-          </li>
+          <h3 className="text-lg font-bold text-white uppercase tracking-widest mb-4">
+            Quick Links
+          </h3>
+          <ul className="space-y-3">
             <li>
-            <Link to="/contact" className="hover:text-orange-500">
-              Contact
-            </Link>
-          </li>
+              <Link
+                to="/products"
+                className="hover:text-yellow-500 transition-colors duration-300"
+              >
+                Shop Collection
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className="hover:hover:text-yellow-500 transition-colors duration-300"
+              >
+                Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/trackorder"
+                className="hover:hover:text-yellow-500 transition-colors duration-300"
+              >
+                Track Order
+              </Link>
+            </li>
           </ul>
         </div>
 
         {/* Social Media */}
         <div>
-          <h3 className="text-xl font-semibold">Follow Us</h3>
-          <div className="mt-2 flex justify-center md:justify-start space-x-4">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white text-2xl">
-              <FaFacebook />
+          <h3 className="text-lg font-bold text-white uppercase tracking-widest mb-4">
+            Follow Us
+          </h3>
+          <p className="text-sm text-white mb-4">
+            Stay updated with our latest drops.
+          </p>
+          <div className="flex justify-center md:justify-start space-x-6">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-yellow-400 transition-all transform hover:-translate-y-1"
+            >
+              <FaFacebook size={28} />
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white text-2xl">
-              <FaInstagram />
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-yellow-400 transition-all transform hover:-translate-y-1"
+            >
+              <FaInstagram size={28} />
             </a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-white text-2xl">
-              <FaTwitter />
+            <a
+              href="https://www.twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-yellow-400 transition-all transform hover:-translate-y-1"
+            >
+              <FaTwitter size={28} />
             </a>
           </div>
         </div>
       </div>
 
-      <div className="text-center mt-8 border-t border-white-700 pt-4">
-        <p>&copy; {new Date().getFullYear()} ShoeStore. All rights reserved.</p>
+      {/* Copyright Bar */}
+      <div className="container mx-auto px-6 mt-3 pt-3 border-t border-white/20 flex flex-col items-center justify-center text-center text-sm text-white">
+        <p className="mt-6">
+          &copy; {new Date().getFullYear()}{" "}
+          <span className="text-white font-bold uppercase tracking-wider">
+            Shoe Point.pk
+          </span>
+          . All rights reserved.
+        </p>
       </div>
     </footer>
   );
