@@ -82,9 +82,9 @@ const Home = () => {
   return (
     <>
       <Search />
-      <div className="container mx-auto p-4 md:p-6">
+      <div className="container mx-auto">
         {/* HERO SECTION - EVERYTHING CENTERED */}
-        <div className="relative h-[60vh] md:h-[85vh] w-full flex items-center justify-center rounded-[40px] overflow-hidden shadow-2xl bg-yellow-700">
+        <div className="relative h-[60vh] md:h-[85vh] w-full flex items-center justify-center overflow-hidden shadow-2xl bg-yellow-700">
           {slides.map((slide, index) => (
             <div
               key={index}
