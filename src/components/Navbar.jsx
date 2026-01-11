@@ -50,7 +50,18 @@ const Navbar = () => {
           {["Home", "Categories", "Cart", "Contact"].map((item) => (
             <li key={item} className="w-full text-center md:w-auto">
               <Link
-                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                /* Logic: 
+         If Home -> "/"
+         If Categories -> "/products" 
+         Otherwise -> "/itemname" 
+      */
+                to={
+                  item === "Home"
+                    ? "/"
+                    : item === "Categories"
+                    ? "/products"
+                    : `/${item.toLowerCase()}`
+                }
                 onClick={closeMenu}
                 className="hover:text-yellow-500 font-bold block py-4 md:py-0 transition-all duration-300 hover:tracking-widest"
               >
@@ -58,7 +69,6 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
-
           <li className="md:hidden mt-6 px-8 w-full">
             <Link
               to="/signin"
