@@ -1,9 +1,13 @@
 import React from "react";
 
 const WhatsAppHelp = () => {
-  const phoneNumber = "92321479236"; // Replace with your actual number
+  // For Pakistan, it must start with 92.
+  const phoneNumber = "923214791236";
+
   const message =
     "Hi ShoePoint! I'm interested in a pair of shoes. Can you help me?";
+
+  // 2. We use encodeURIComponent to handle spaces and emojis in the message correctly
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message
   )}`;
