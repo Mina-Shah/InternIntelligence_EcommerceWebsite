@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import products from "./Products";
+import ProductPurchaseSidebar from "./ProductPurchaseSidebar";
+import MobileStickyBar from "./MobileStickyBar";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -10,12 +12,10 @@ const ProductDetails = () => {
 
   useEffect(() => {
     let foundProduct = null;
-
     for (const category of products) {
       foundProduct = category.items.find((item) => item.id === Number(id));
       if (foundProduct) break;
     }
-
     setProduct(foundProduct);
   }, [id]);
 
@@ -33,45 +33,70 @@ const ProductDetails = () => {
 
   if (!product) {
     return (
-      <div className="text-center text-orange-500 text-lg">
+      <div className="text-center text-orange-500 py-20 text-lg font-bold">
         Product not found
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-100 flex items-center justify-center p-12 animate-slide-in-up">
-      <div className="bg-white shadow-md rounded-lg p-8 max-w-4xl w-full flex flex-col md:flex-row">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full md:w-1/2 rounded-lg"
-        />
+    // Added pb-20 so the content isn't hidden behind the MobileStickyBar
+    <div className="bg-gray-50 min-h-screen pb-20 md:pb-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
+        {/* Main Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          {/* LEFT & MIDDLE: Product Images and Details */}
+          <div className="lg:col-span-2 space-y-8">
+            <div className="bg-white p-4 rounded-[40px] shadow-sm overflow-hidden border border-gray-100">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-auto rounded-[32px] object-cover"
+              />
+            </div>
 
-        <div className="lg:mt-16 md:ml-8 w-full md:w-1/2">
-          <h2 className="text-3xl font-bold text-gray-800">{product.name}</h2>
-          <p className="text-xl font-semibold text-gray-900 mt-4">
-            ${product.price}
-          </p>
+            <div className="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100">
+              <h1 className="text-4xl font-black text-slate-900 mb-4 uppercase tracking-tighter">
+                {product.name}
+              </h1>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Experience premium comfort with our latest {product.name}. Built
+                with breathable materials and high-traction soles, these are
+                perfect for your daily hustle in Karachi.
+              </p>
 
-          <div className="mt-4">
-            <label className="block text-gray-700 font-medium">Quantity</label>
-            <input
-              type="number"
-              value={quantity}
-              min="1"
-              onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-              className="w-16 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800"
-            />
+              <div className="mt-8">
+                <label className="block text-slate-900 font-bold mb-2 uppercase text-xs tracking-widest">
+                  Select Quantity
+                </label>
+                <input
+                  type="number"
+                  value={quantity}
+                  min="1"
+                  onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+                  className="w-24 px-4 py-3 border-2 border-slate-100 rounded-2xl focus:outline-none focus:border-yellow-400 font-bold text-lg"
+                />
+              </div>
+            </div>
           </div>
 
-          <button
-            className="mt-6 w-full bg-yellow-400 text-white font-semibold py-2 rounded-lg hover:bg-yellow-500 transition duration-300"
-            onClick={addToCart}
-          >
-            Add to Cart
-          </button>
+          {/* RIGHT SIDE: The Desktop Sidebar */}
+          {/* hidden on mobile, block on lg screens */}
+          <div className="hidden lg:block lg:col-span-1">
+            <div className="sticky top-28">
+              <ProductPurchaseSidebar
+                product={product}
+                onAddToCart={addToCart}
+              />
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* MOBILE ONLY: The Sticky Bar */}
+      {/* lg:hidden ensures it disappears on desktop */}
+      <div className="lg:hidden">
+        <MobileStickyBar product={product} onAddToCart={addToCart} />
       </div>
     </div>
   );
