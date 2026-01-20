@@ -36,9 +36,9 @@ const CheckoutPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center p-6 animate-slide-in-up">
+    <div className="min-h-screen bg-gray-100 mt-28 flex justify-center p-6 animate-slide-in-up">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl">
-        <h2 className="text-2xl font-bold text-center text-yellow-700 mb-6">
+        <h2 className="text-2xl font-bold text-center text-[#133250] mb-6">
           Secure Checkout
         </h2>
         {orderConfirmed ? (
@@ -104,7 +104,7 @@ const CheckoutPage = () => {
                 />
               </div>
             </div>
-            <h3 className="text-xl font-bold text-yellow-700 mt-4">
+            <h3 className="text-xl font-bold text-[#133250] mt-4">
               Payment Details
             </h3>
             <div>
@@ -146,7 +146,7 @@ const CheckoutPage = () => {
               <h3 className="text-lg font-bold">Total: $ {totalPrice}</h3>
               <button
                 type="submit"
-                className="bg-yellow-400 font-bold text-white px-4 py-2 rounded mt-3 hover:bg-yellow-500 w-full"
+                className="bg-[#133250] font-bold text-white px-4 py-2 rounded mt-3 hover:bg-blue-400 w-full"
               >
                 Place Order
               </button>

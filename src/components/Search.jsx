@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CircleUser, Search as SearchIcon, X } from "lucide-react";
+import { Search as SearchIcon, X } from "lucide-react";
 
-// The data object remains the same as you provided...
 const data = [
   {
     id: 1,
@@ -82,25 +81,30 @@ const data = [
   },
 ];
 
-const Search = () => {
+const Search = ({ onClose }) => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
-  // 1. Flatten products for easier searching
   const allProducts = data.flatMap((category) => category.items);
 
-  // 2. LIVE SEARCH LOGIC: useEffect triggers every time searchTerm changes
   useEffect(() => {
     if (searchTerm.trim() === "") {
       setFilteredData([]);
     } else {
       const results = allProducts.filter((item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        item.name.toLowerCase().includes(searchTerm.toLowerCase()),
       );
       setFilteredData(results);
     }
   }, [searchTerm]);
+
+  // NEW: Updated Click Handler to close automatically
+  const handleResultClick = (productId) => {
+    navigate(`/product/${productId}`);
+    setSearchTerm("");
+    if (onClose) onClose(); // This triggers setIsSearchOpen(false) in Navbar
+  };
 
   const clearSearch = () => {
     setSearchTerm("");
@@ -108,42 +112,41 @@ const Search = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full sticky top-0 z-[100] bg-white/80 backdrop-blur-md pb-4">
-      {/* Search Input Bar */}
+    <div className="flex flex-col items-center w-full bg-white pb-4 shadow-xl">
       <div className="flex items-center justify-between w-full max-w-5xl px-6 mt-5 space-x-4">
         <div className="relative flex-grow group">
           <SearchIcon
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-yellow-700 transition-colors"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#133250] transition-colors"
             size={20}
           />
           <input
+            autoFocus
             type="text"
-            placeholder="Search for your style (e.g. 'Black', 'Casual')..."
+            placeholder="Search for your style..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-12 pr-12 py-3 border-2 border-yellow-700 rounded-2xl w-full bg-slate-50 focus:bg-white focus:border-yellow-900 focus:outline-none transition-all shadow-sm"
+            className="pl-12 pr-12 py-3 rounded-2xl w-full bg-slate-50 focus:bg-white focus:ring-2 focus:ring-[#133250] outline-none transition-all shadow-sm"
           />
-          {searchTerm && (
+          {searchTerm ? (
             <button
               onClick={clearSearch}
               className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-red-500"
             >
               <X size={20} />
             </button>
+          ) : (
+            <button
+              onClick={onClose}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 md:hidden"
+            >
+              <X size={20} />
+            </button>
           )}
         </div>
-
-        <button
-          className="p-2 rounded-2xl hover:bg-slate-100 transition-colors"
-          onClick={() => navigate("/signin")}
-        >
-          <CircleUser color="#5e4708" size={42} />
-        </button>
       </div>
 
-      {/* Instant Search Results Dropdown/Grid */}
       {searchTerm && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-slate-100 max-h-[70vh] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-300">
+        <div className="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-slate-100 max-h-[70vh] overflow-y-auto z-[200]">
           <div className="container mx-auto p-6">
             {filteredData.length > 0 ? (
               <>
@@ -154,11 +157,8 @@ const Search = () => {
                   {filteredData.map((item) => (
                     <div
                       key={item.id}
-                      className="cursor-pointer group flex flex-col items-center p-2 rounded-3xl hover:bg-slate-50 transition-all"
-                      onClick={() => {
-                        navigate(`/product/${item.id}`);
-                        clearSearch();
-                      }}
+                      className="cursor-pointer group flex flex-col items-center p-2 rounded-3xl hover:bg-slate-50 transition-all border border-transparent hover:border-slate-100"
+                      onClick={() => handleResultClick(item.id)}
                     >
                       <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-slate-100 mb-3">
                         <img
@@ -167,10 +167,12 @@ const Search = () => {
                           className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>
-                      <h3 className="font-bold text-sm text-center line-clamp-1">
+                      <h3 className="font-bold text-sm text-center line-clamp-1 uppercase tracking-tighter">
                         {item.name}
                       </h3>
-                      <p className="font-black text-sm">${item.price}</p>
+                      <p className="font-black text-sm text-[#133250]">
+                        Rs. {item.price}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -182,8 +184,11 @@ const Search = () => {
                   <span className="text-slate-900 font-bold">{searchTerm}</span>
                   "
                 </p>
-                <button onClick={clearSearch} className="mt-2 underline">
-                  Clear search
+                <button
+                  onClick={onClose}
+                  className="mt-2 text-[#80B5D7] font-bold underline"
+                >
+                  Close Search
                 </button>
               </div>
             )}

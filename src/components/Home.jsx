@@ -81,14 +81,16 @@ const Home = () => {
   return (
     <>
       <Search />
-      
+
       {/* 1. HERO SECTION */}
-      <div className="relative h-[60vh] md:h-[85vh] w-full flex items-center justify-center overflow-hidden bg-slate-900">
+      <div className="relative h-[60vh] md:h-[96vh] w-full flex items-center justify-center overflow-hidden bg-slate-900">
         {slides.map((slide, index) => (
           <div
             key={index}
             className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out ${
-              index === currentSlide ? "opacity-100 scale-105" : "opacity-0 scale-100"
+              index === currentSlide
+                ? "opacity-100 scale-105"
+                : "opacity-0 scale-100"
             }`}
             style={{ backgroundImage: `url('${slide.image}')` }}
           ></div>
@@ -96,14 +98,14 @@ const Home = () => {
         <div className="absolute inset-0 bg-black/40 bg-gradient-to-t from-black/70 via-transparent to-black/30"></div>
 
         <div className="relative z-10 w-full px-4 text-center">
-          <h1 className="text-3xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter uppercase drop-shadow-2xl">
+          <h1 className="text-3xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter uppercase drop-shadow-2xl">
             {slides[currentSlide].title}
           </h1>
           <p className="mt-4 text-lg md:text-xl text-slate-200 font-medium max-w-lg mx-auto drop-shadow-lg">
             {slides[currentSlide].sub}
           </p>
           <button
-            className="mt-10 mx-auto bg-yellow-400 hover:bg-yellow-500 text-slate-900 py-4 px-12 rounded-2xl font-black text-lg transition-all shadow-xl active:scale-95"
+            className="mt-10 mx-auto bg-[#133250] hover:bg-blue-500 text-slate-200 py-4 px-12 rounded-2xl font-black text-lg transition-all shadow-xl active:scale-95"
             onClick={() => navigate("/products")}
           >
             Shop Collection
@@ -117,7 +119,7 @@ const Home = () => {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "w-8 bg-yellow-400" : "w-2 bg-white/50"
+                index === currentSlide ? "w-8 bg-[#133250]" : "w-2 bg-white/50"
               }`}
             />
           ))}
@@ -129,48 +131,67 @@ const Home = () => {
       <TrustSection />
 
       {/* 3. PROMOTIONS SECTION */}
-      <div className="container mx-auto px-6 py-12">
-        <h2 className="text-center text-4xl font-black text-slate-900 mb-12 tracking-tight">
-          Season Sales
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="container mx-auto px-4 md:px-10 py-20">
+        <div className="flex justify-between items-end mb-10">
+          <div>
+            <h2 className="text-center text-4xl md:text-6xl font-black text-[#133250] tracking-tighter uppercase italic">
+              Season <span className="text-[#80B5D7]">Deals</span>
+            </h2>
+            <p className="text-slate-400 text-center font-bold uppercase tracking-widest text-xs mt-2">
+              Limited time offers for the Karachi collection
+            </p>
+          </div>
+          <button
+            onClick={() => navigate("/products")}
+            className="hidden md:block text-sm font-black uppercase tracking-widest border-b-2 border-[#133250] pb-1 hover:text-[#80B5D7] hover:border-[#80B5D7] transition-all"
+          >
+            View All Sales
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {promotions.map((promo) => (
             <div
               key={promo.id}
-              className="group p-6 text-center bg-slate-50 rounded-[40px] shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100"
+              className="relative aspect-[4/5] md:aspect-[4/4] w-full overflow-hidden"
+              onClick={() => navigate(`/products`)}
             >
-              <div className="overflow-hidden rounded-3xl h-80">
-                <img
-                  src={promo.image}
-                  alt={promo.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
+              {/* Background Image */}
+              <img
+                src={promo.image}
+                alt={promo.title}
+                className="h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+
+              {/* Dark Overlay for Text Readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+              {/* Text Content - Positioned at the bottom */}
+              <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full text-white">
+                <span className="bg-[#80B5D7] text-[#133250] px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 inline-block">
+                  Special Offer
+                </span>
+                <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter italic leading-none">
+                  {promo.title}
+                </h3>
+                <p className="text-slate-300 mt-2 font-medium max-w-xs text-sm md:text-base">
+                  {promo.description}
+                </p>
+
+                {/* Modern CTA Link */}
+                <div className="mt-6 flex items-center gap-2 group/link">
+                  <span className="text-sm font-black uppercase tracking-widest">
+                    Claim Offer
+                  </span>
+                  <div className="h-[2px] w-8 bg-white transition-all group-hover/link:w-16"></div>
+                </div>
               </div>
-              <h3 className="text-2xl font-black mt-6 text-slate-900">{promo.title}</h3>
-              <p className="text-slate-500 mb-6 font-medium">{promo.description}</p>
-              <button
-                className="bg-slate-900 text-white py-4 px-10 rounded-2xl font-bold hover:bg-yellow-400 hover:text-slate-900 transition-all shadow-lg"
-                onClick={() => navigate(`/products`)}
-              >
-                Claim Offer
-              </button>
             </div>
           ))}
         </div>
       </div>
 
-      {/* 4. PRODUCT LISTING */}
-      <div className="bg-white py-12">
-        <div className="container mx-auto px-6">
-          <div className="flex justify-between items-end mb-10">
-            <h2 className="text-4xl font-black text-slate-900 tracking-tight">New Arrivals</h2>
-            <button onClick={() => navigate("/products")} className="text-yellow-600 font-bold hover:underline">
-              View All
-            </button>
-          </div>
-          <ProductList limit={3} /> 
-        </div>
-      </div>
+      <ProductList />
     </>
   );
 };

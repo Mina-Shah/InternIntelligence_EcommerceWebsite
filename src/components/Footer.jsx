@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-yellow-700 text-slate-300 mt-20 py-12 border-t-4 border-[#FFD700]">
+    <footer className="bg-[#133250] text-slate-300 mt-20 py-12 border-t-4 border-[#133250]">
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
         {/* Logo and Description */}
         <div className="space-y-4">
           <h2 className="text-3xl font-black text-white">
-            SHOE<span className="text-[#FFD700]">POINT</span>
+            SHOE<span className="text-[#80B5D7]">POINT</span>
             <span className="text-sm text-white font-normal italic">.pk</span>
           </h2>
           <p className="text-white leading-relaxed max-w-xs mx-auto md:mx-0">
@@ -26,7 +26,7 @@ const Footer = () => {
             <li>
               <Link
                 to="/products"
-                className="hover:text-yellow-500 transition-colors duration-300"
+                className="hover:text-blue-300 hover:underline transition-colors duration-300"
               >
                 Shop Collection
               </Link>
@@ -34,7 +34,7 @@ const Footer = () => {
             <li>
               <Link
                 to="/contact"
-                className="hover:hover:text-yellow-500 transition-colors duration-300"
+                className="hover:text-blue-300 hover:underline transition-colors duration-300"
               >
                 Contact Us
               </Link>
@@ -42,7 +42,7 @@ const Footer = () => {
             <li>
               <Link
                 to="/trackorder"
-                className="hover:hover:text-yellow-500 transition-colors duration-300"
+                className="hover:text-blue-300 hover:underline transition-colors duration-300"
               >
                 Track Order
               </Link>
@@ -63,7 +63,7 @@ const Footer = () => {
               href="https://www.facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-yellow-400 transition-all transform hover:-translate-y-1"
+              className="text-white hover:text-blue-300 transition-all transform hover:-translate-y-1"
             >
               <FaFacebook size={28} />
             </a>
@@ -71,7 +71,7 @@ const Footer = () => {
               href="https://www.instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-yellow-400 transition-all transform hover:-translate-y-1"
+              className="text-white hover:text-blue-300 transition-all transform hover:-translate-y-1"
             >
               <FaInstagram size={28} />
             </a>
@@ -79,7 +79,7 @@ const Footer = () => {
               href="https://www.twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-yellow-400 transition-all transform hover:-translate-y-1"
+              className="text-white hover:text-blue-300 transition-all transform hover:-translate-y-1"
             >
               <FaTwitter size={28} />
             </a>

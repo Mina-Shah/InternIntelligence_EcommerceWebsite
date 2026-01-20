@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { FaTrash } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaTrash, FaMinus, FaPlus } from "react-icons/fa"; // Added icons for better mobile UX
 import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
@@ -13,7 +13,7 @@ const CartPage = () => {
 
   const updateQuantity = (id, quantity) => {
     const updatedCart = cart.map((item) =>
-      item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
+      item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item,
     );
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -27,80 +27,149 @@ const CartPage = () => {
 
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
-    0
+    0,
   );
 
   return (
-    <div className="min-h-screen flex flex-col items-center mx-auto p-4 sm:p-6 max-w-6xl animate-slide-in-up">
-      <h2 className="text-center text-yellow-700 text-2xl sm:text-3xl font-bold mb-4">
-        Shopping Cart
-      </h2>
-      {cart.length === 0 ? (
-        <p className="flex-grow flex items-center justify-center text-xl sm:text-2xl text-gray-500">
-          Your cart is empty.
-        </p>
-      ) : (
-        <div className="bg-white shadow-lg rounded-lg p-4 overflow-x-auto w-full">
-          <table className="w-full border-collapse min-w-[600px]">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left p-2">Product</th>
-                <th className="text-left p-2">Image</th>
-                <th className="text-left p-2">Price</th>
-                <th className="text-center p-2">Quantity</th>
-                <th className="text-left p-2">Total</th>
-                <th className="p-2">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.map((item) => (
-                <tr key={item.id} className="border-b text-sm sm:text-base">
-                  <td className="p-2">{item.name}</td>
-                  <td className="p-2">
+    <div className="min-h-screen bg-slate-50 mt-24 p-4 md:p-10 animate-slide-in-up">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-3xl md:text-5xl font-black text-[#133250] mb-8 tracking-tighter italic uppercase">
+          Shopping <span className="text-[#80B5D7]">Cart</span>
+        </h2>
+
+        {cart.length === 0 ? (
+          <div className="text-center py-20 bg-white rounded-[2rem] shadow-sm">
+            <p className="text-xl text-gray-400 font-medium">
+              Your cart is empty.
+            </p>
+            <button
+              onClick={() => navigate("/products")}
+              className="mt-4 text-[#80B5D7] font-bold underline"
+            >
+              Continue Shopping
+            </button>
+          </div>
+        ) : (
+          <div className="space-y-6">
+            {/* Desktop Header - Hidden on Mobile */}
+            <div className="hidden md:grid grid-cols-6 gap-4 px-6 py-4 text-gray-400 font-bold text-xs uppercase tracking-widest border-b">
+              <div className="col-span-3">Product</div>
+              <div className="text-center">Price</div>
+              <div className="text-center">Quantity</div>
+              <div className="text-right">Total</div>
+            </div>
+
+            {/* Cart Items List */}
+            {cart.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white rounded-[2rem] p-4 md:p-6 shadow-sm border border-slate-100 flex flex-col md:grid md:grid-cols-6 md:items-center gap-4"
+              >
+                {/* Image & Name Section */}
+                <div className="flex items-center gap-4 md:col-span-3">
+                  <div className="w-20 h-20 md:w-24 md:h-24 bg-slate-100 rounded-2xl overflow-hidden flex-shrink-0">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded"
+                      className="w-full h-full object-cover"
                     />
-                  </td>
-                  <td className="p-2">$ {item.price}</td>
-                  <td className="p-2 text-center">
-                    <input
-                      type="number"
-                      className="border p-1 w-12 sm:w-16 text-center"
-                      value={item.quantity}
-                      min="1"
-                      onChange={(e) =>
-                        updateQuantity(item.id, parseInt(e.target.value) || 1)
-                      }
-                    />
-                  </td>
-                  <td className="p-2">$ {item.price * item.quantity}</td>
-                  <td className="p-2 text-center">
+                  </div>
+                  <div>
+                    <h3 className="font-black text-[#133250] uppercase tracking-tight text-lg leading-tight">
+                      {item.name}
+                    </h3>
+                    <p className="text-gray-400 lg:text-xs font-bold md:hidden">
+                      Rs. {item.price}
+                    </p>
                     <button
-                      className="text-red-500 hover:text-red-700"
                       onClick={() => removeItem(item.id)}
+                      className="text-red-400 text-xs font-bold mt-2 flex items-center gap-1 md:hidden"
                     >
-                      <FaTrash />
+                      <FaTrash size={10} /> Remove
                     </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="text-right mt-4">
-            <h3 className="text-lg sm:text-xl font-bold">
-              Total: $ {totalPrice}
-            </h3>
-            <button
-              className="bg-yellow-400 font-bold text-white px-3 sm:px-4 py-2 rounded mt-2 hover:bg-yellow-500"
-              onClick={() => navigate("/checkout")}
-            >
-              Proceed to Checkout
-            </button>
+                  </div>
+                </div>
+
+                {/* Price - Hidden on Mobile (shown under name instead) */}
+                <div className="hidden md:block text-center font-bold text-[#133250]">
+                  Rs. {item.price}
+                </div>
+
+                {/* Quantity Controller */}
+                <div className="flex items-center justify-between md:justify-center rounded-xl p-2 md:p-1">
+                  <span className="md:hidden text-xs font-bold text-gray-400 uppercase">
+                    Quantity
+                  </span>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm text-[#133250]"
+                    >
+                      <FaMinus size={10} />
+                    </button>
+                    <span className="font-black text-[#133250] w-4 text-center">
+                      {item.quantity}
+                    </span>
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      className="w-8 h-8 flex items-center justify-center bg-[#133250] text-white rounded-lg shadow-sm"
+                    >
+                      <FaPlus size={10} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Total & Desktop Trash */}
+                <div className="flex items-center justify-between md:justify-end gap-4">
+                  <span className="md:hidden text-xs font-bold text-gray-400 uppercase">
+                    Subtotal
+                  </span>
+                  <div className="flex items-center gap-4">
+                    <span className="font-black text-[#133250] text-lg">
+                      Rs. {item.price * item.quantity}
+                    </span>
+                    <button
+                      onClick={() => removeItem(item.id)}
+                      className="hidden md:block text-slate-300 hover:text-red-500 transition-colors"
+                    >
+                      <FaTrash size={18} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Order Summary Section */}
+            <div className="lg:col-span-1">
+              <div className="border border-[#133250] text-[#133250] p-8 rounded-[2.5rem] shadow-xl sticky top-32">
+                <h3 className="text-xl font-black uppercase mb-6 border-b border-white/10 pb-4 tracking-widest">
+                  Summary
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between text-[#133250]">
+                    <span>Subtotal</span>
+                    <span>Rs. {totalPrice}</span>
+                  </div>
+                  <div className="flex justify-between text-[#133250]">
+                    <span>Shipping</span>
+                    <span className="text-[#80B5D7]">FREE</span>
+                  </div>
+                  <div className="flex justify-between text-xl font-black pt-4 border-t border-white/10">
+                    <span>Total</span>
+                    <span className="">Rs. {totalPrice}</span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => navigate("/checkout")}
+                  className="w-full bg-[#133250] text-white hover:bg-blue-400 hover:text-[#133250]  font-black py-4 rounded-2xl mt-8 transition-all uppercase tracking-widest"
+                >
+                  Proceed to Checkout
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

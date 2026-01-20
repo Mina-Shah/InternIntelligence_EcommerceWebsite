@@ -41,7 +41,7 @@ const ProductDetails = () => {
 
   return (
     // Added pb-20 so the content isn't hidden behind the MobileStickyBar
-    <div className="bg-gray-50 min-h-screen pb-20 md:pb-12">
+    <div className="bg-gray-50 min-h-screen pb-20 mt-20 md:pb-12">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
         {/* Main Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -51,12 +51,12 @@ const ProductDetails = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-auto rounded-[32px] object-cover"
+                className="w-full h-auto lg:h-96 rounded-[32px] object-cover"
               />
             </div>
 
             <div className="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100">
-              <h1 className="text-4xl font-black text-slate-900 mb-4 uppercase tracking-tighter">
+              <h1 className="text-4xl font-black text-[#133250] mb-4 uppercase tracking-tighter">
                 {product.name}
               </h1>
               <p className="text-gray-600 text-lg leading-relaxed">
