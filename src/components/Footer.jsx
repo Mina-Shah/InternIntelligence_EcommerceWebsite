@@ -41,7 +41,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/trackorder"
+                to="/track-order"
                 className="hover:text-blue-300 hover:underline transition-colors duration-300"
               >
                 Track Order

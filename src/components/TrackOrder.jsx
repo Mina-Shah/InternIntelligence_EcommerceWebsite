@@ -62,12 +62,12 @@ const TrackOrder = () => {
               placeholder="Example: SP-12345"
               value={orderId}
               onChange={(e) => setOrderId(e.target.value)}
-              className="flex-grow p-4 border-2 border-slate-100 rounded-2xl focus:border-yellow-700 focus:outline-none transition-all font-medium"
+              className="flex-grow p-4 border-2 border-slate-100 rounded-2xl focus:border-[#133250] focus:outline-none transition-all font-medium"
               required
             />
             <button
               type="submit"
-              className="bg-[#FFD700] text-white px-8 py-4 rounded-2xl font-black shadow-lg hover:bg-yellow-500 hover:text-white transition-all transform active:scale-95"
+              className="bg-[#133250] text-white px-8 py-4 rounded-2xl font-black shadow-lg hover:bg-blue-500 hover:text-white transition-all transform active:scale-95"
             >
               Track Now
             </button>
@@ -78,7 +78,7 @@ const TrackOrder = () => {
         {tracking && (
           <div className="bg-white rounded-[32px] shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Status Header */}
-            <div className="bg-yellow-700 p-6 text-white flex justify-between items-center">
+            <div className="bg-[#133250] p-6 text-white flex justify-between items-center">
               <div>
                 <p className="text-slate-200 text-xs uppercase font-bold tracking-widest">
                   Tracking Number
@@ -105,7 +105,7 @@ const TrackOrder = () => {
                       <div
                         className={`absolute left-5 top-10 w-0.5 h-12 ${
                           step.status === "complete"
-                            ? "bg-yellow-700"
+                            ? "bg-[#133250]"
                             : "bg-slate-100"
                         }`}
                       ></div>
@@ -115,10 +115,10 @@ const TrackOrder = () => {
                     <div
                       className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-500 ${
                         step.status === "complete"
-                          ? "bg-yellow-700 text-white"
+                          ? "bg-[#133250] text-white"
                           : step.status === "current"
-                          ? "bg-[#FFD700] text-slate-900 ring-4 ring-yellow-100"
-                          : "bg-green-500 text-white"
+                            ? "bg-[#FFD700] text-slate-900 ring-4 ring-yellow-100"
+                            : "bg-green-500 text-white"
                       }`}
                     >
                       {step.icon}

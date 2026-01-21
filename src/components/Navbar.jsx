@@ -95,7 +95,7 @@ const Navbar = () => {
       <div
         className={`md:hidden fixed inset-0 top-[110px] bg-white z-[150] transition-transform duration-500 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
-        <ul className="flex flex-col items-center pt-10 space-y-8 text-xl font-bold uppercase tracking-widest text-gray-800">
+        <ul className="flex flex-col items-center  space-y-8 text-xl font-bold uppercase tracking-widest text-gray-800">
           {categories.map((cat) => (
             <li key={cat} onClick={closeMenu}>
               <Link to={`/products?category=${cat}`}>{cat}</Link>

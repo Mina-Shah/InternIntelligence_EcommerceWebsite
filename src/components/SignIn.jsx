@@ -22,8 +22,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className="bg-[#133250] flex justify-center items-center h-screen animate-slide-in-up">
-      <div className="w-8/12 max-w-md p-6 mt-10 rounded bg-white border border-[#133250]">
+    <div className="border-[#133250] flex justify-center items-center h-screen animate-slide-in-up">
+      <div className="w-10/12 max-w-md p-6 mt-16 rounded bg-white border border-[#133250]">
         <h2 className="text-3xl text-center md:text-5xl font-black text-[#133250] mb-8 tracking-tighter italic uppercase">
           Sign <span className="text-[#80B5D7]">In</span>
         </h2>
