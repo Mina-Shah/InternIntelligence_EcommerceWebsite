@@ -93,21 +93,39 @@ const Navbar = () => {
 
       {/* MOBILE MENU */}
       <div
-        className={`md:hidden fixed inset-0 top-[110px] bg-white z-[150] transition-transform duration-500 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`md:hidden fixed inset-y-0 right-0 top-[110px] w-full bg-black/20 z-[150] transition-opacity duration-500 ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={closeMenu} // Closes menu if you tap the darkened area
       >
-        <ul className="flex flex-col items-center  space-y-8 text-xl font-bold uppercase tracking-widest text-gray-800">
-          {categories.map((cat) => (
-            <li key={cat} onClick={closeMenu}>
-              <Link to={`/products?category=${cat}`}>{cat}</Link>
+        <div
+          className={`fixed right-0 top-[110px] bottom-0 w-64 bg-white z-[151] transition-transform duration-500 ease-in-out shadow-2xl ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+          onClick={(e) => e.stopPropagation()} // Prevents menu from closing when clicking inside
+        >
+          <ul className="flex flex-col items-end space-y-8 text-xl font-black uppercase tracking-tighter text-[#133250] mt-16 px-8">
+            {categories.map((cat) => (
+              <li
+                key={cat}
+                onClick={closeMenu}
+                className="hover:text-[#80B5D7] transition-colors"
+              >
+                <Link to={`/products?category=${cat}`}>{cat}</Link>
+              </li>
+            ))}
+
+            <li className="pt-4  border-t border-gray-100">
+              <Link
+                to="/signin"
+                onClick={closeMenu}
+                className="block w-full py-2 px-4 text-white font-bold bg-[#133250] rounded text-center shadow-lg active:scale-95 transition-transform"
+              >
+                Sign In
+              </Link>
             </li>
-          ))}
-          <li
-            onClick={closeMenu}
-            className="px-3 py-1 text-white  bg-[#133250] border border-[#133250] rounded text-center"
-          >
-            <Link to="/signin">Sign In</Link>
-          </li>
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   );
