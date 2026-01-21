@@ -22,7 +22,7 @@ const WhatsAppHelp = () => {
       </span>
 
       {/* The Button */}
-      <div className="relative bg-[#25D366] text-white p-4 rounded-full hover:scale-110 active:scale-95 transition-all duratin-300">
+      <div className="relative bg-[#25D366] text-white p-4 rounded-full  hover:scale-110 active:scale-95 transition-all duration-300 animate-pulse">
         <FaWhatsapp size={32} />
 
       
