@@ -1,8 +1,22 @@
-# React + Vite
+# ShoePoint.pk - Premium E-Commerce Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, SEO-optimized footwear store built with **React** and **Tailwind CSS**. Designed for the Karachi market with a focus on speed and user experience.
 
-Currently, two official plugins are available:
+## 🚀 Key Features
+* **Dynamic SEO:** Integrated `react-helmet-async` for page-specific titles and metadata.
+* **URL-Driven Filtering:** Category selection is handled via URL parameters for better shareability.
+* **Persistent Shopping Cart:** Custom `localStorage` logic with event dispatching to sync cart state across components.
+* **Responsive Design:** Mobile-first vertical stack for cart details and grid-based product views.
+* **Urgency Triggers:** Live viewer simulation and stock alerts to drive sales conversion.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack
+- **Frontend:** React.js v18
+- **Styling:** Tailwind CSS (Modern UI/UX)
+- **Routing:** React Router v6
+- **Deployment:** Netlify (Continuous Integration)
+- **Icons:** Lucide-React & React Icons
+
+## 📦 Local Setup
+1. Clone the repository: `git clone [your-link]`
+2. Install dependencies: `npm install`
+3. Run the project: `npm run dev`

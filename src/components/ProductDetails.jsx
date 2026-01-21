@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import products from "./Products";
 import ProductPurchaseSidebar from "./ProductPurchaseSidebar";
 import MobileStickyBar from "./MobileStickyBar";
+import { Helmet } from "react-helmet-async";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -39,7 +40,15 @@ const ProductDetails = () => {
     );
   }
 
-  return (
+  return ( 
+    <>
+    <Helmet>
+        <title>{product.name} - Premium Footwear | ShoePoint.pk</title>
+        <meta name="description" content={`Buy ${product.name} for only Rs. ${product.price}. High quality materials and comfort.`} />
+        {/* Open Graph tags for WhatsApp/Facebook sharing */}
+        <meta property="og:title" content={product.name} />
+        <meta property="og:image" content={product.image} />
+      </Helmet>
     // Added pb-20 so the content isn't hidden behind the MobileStickyBar
     <div className="bg-gray-50 min-h-screen pb-20 mt-20 md:pb-12">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
@@ -99,6 +108,7 @@ const ProductDetails = () => {
         <MobileStickyBar product={product} onAddToCart={addToCart} />
       </div>
     </div>
+    </>
   );
 };
 

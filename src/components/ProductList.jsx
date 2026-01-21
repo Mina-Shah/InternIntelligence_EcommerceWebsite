@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import products from "./Products";
+import { Helmet } from "react-helmet-async";
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -55,6 +56,12 @@ const ProductList = () => {
   };
 
   return (
+    <>
+    <Helmet>
+        <title>{category} Shoes | ShoePoint.pk Karachi</title>
+        <meta name="description" content={`Shop the best ${category} shoes in Pakistan. Fast delivery in Karachi!`} />
+      </Helmet>
+    
     <div className="container mx-auto p-6 pt-32 animate-slide-in-up">
       <h1 className="text-[#133250] text-center text-4xl font-black uppercase tracking-tighter mb-10 italic">
         {category === "All" ? "Featured Collection" : `${category} Collection`}
@@ -137,6 +144,7 @@ const ProductList = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

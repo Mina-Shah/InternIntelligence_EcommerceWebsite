@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import TrackOrder from "./components/TrackOrder";
+import OrderSuccess from "./components/OrderSuccess";
 import ScrollToTop from "./components/ScrollToTop";
 import "./index.css";
 
@@ -36,7 +37,8 @@ const showFooter =
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/trackorder" element={<TrackOrder />} />
+          <Route path="/track-order" element={<TrackOrder />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
         </Routes>
       </main>
       {/* Conditional Rendering: Footer only shows if it's NOT a product page */}
