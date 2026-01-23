@@ -4,6 +4,7 @@ import products from "./Products";
 import ProductPurchaseSidebar from "./ProductPurchaseSidebar";
 import MobileStickyBar from "./MobileStickyBar";
 import { Helmet } from "react-helmet-async";
+import TrustSection from "./TrustSection";
 
 const ProductDetails = () => {
   const { id } = useParams();

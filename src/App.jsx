@@ -18,8 +18,7 @@ function App() {
   const location = useLocation();
 
   // Logic: Hide footer if the URL starts with "/product/"
-const showFooter =
-  location.pathname === "/" || location.pathname === "/checkout";
+const showFooter = location.pathname !== "/checkout";
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 flex flex-col">
       {/* ScrollToTop ensures the user starts at the top when changing pages */}
@@ -42,7 +41,7 @@ const showFooter =
         </Routes>
       </main>
       {/* Conditional Rendering: Footer only shows if it's NOT a product page */}
-      {showFooter && <Footer />}{" "}
+      {showFooter && <Footer />}
     </div>
   );
 }

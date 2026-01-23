@@ -81,7 +81,6 @@ const Home = () => {
   return (
     <>
       <Search />
-
       {/* 1. HERO SECTION */}
       <div className="relative h-[60vh] md:h-[96vh] w-full flex items-center justify-center overflow-hidden bg-slate-900">
         {slides.map((slide, index) => (
@@ -125,11 +124,9 @@ const Home = () => {
           ))}
         </div>
       </div>
-
       {/* 2. TRUST SECTION (The "Sweet Spot") */}
       {/* We place it here to convert "Interest" from the Hero into "Trust" before showing products */}
       <TrustSection />
-
       {/* 3. PROMOTIONS SECTION */}
       <div className="container mx-auto px-4 md:px-10 py-20">
         <div className="flex justify-between items-end mb-10">
@@ -190,8 +187,8 @@ const Home = () => {
           ))}
         </div>
       </div>
-
       <ProductList />
+      
     </>
   );
 };

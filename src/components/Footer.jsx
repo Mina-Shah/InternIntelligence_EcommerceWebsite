@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#133250] text-slate-300 py-12 border-t-4 border-[#133250]">
+    <footer className="bg-[#133250] text-slate-300 py-12 mt-10 border-t-4 border-[#133250]">
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
         {/* Logo and Description */}
         <div className="space-y-4">
@@ -88,7 +88,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright Bar */}
-      <div className="container mx-auto px-6 mt-3 pt-3 border-t border-white/20 flex flex-col items-center justify-center text-center text-sm text-white">
+      <div className="container mx-auto px-6 mt-6 pt-3 border-t border-white/20 flex flex-col items-center justify-center text-center text-sm text-white">
         <p className="mt-6">
           &copy; {new Date().getFullYear()}{" "}
           <span className="text-white font-bold uppercase tracking-wider">
