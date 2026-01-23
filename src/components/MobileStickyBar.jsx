@@ -16,7 +16,7 @@ const MobileStickyBar = ({ product, onAddToCart }) => {
 
         <button
           onClick={onAddToCart}
-          className="bg-[#133250] text-white px-8 py-3.5 rounded-2xl font-black text-sm shadow-lg shadow-teal-100 active:scale-95 transition-all"
+          className="bg-[#133250] text-white px-8 py-3.5 rounded-2xl font-black text-sm  active:scale-95 transition-all"
         >
           Add to Cart
         </button>
