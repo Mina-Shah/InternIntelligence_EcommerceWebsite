@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import TrackOrder from "./components/TrackOrder";
 import OrderSuccess from "./components/OrderSuccess";
 import ScrollToTop from "./components/ScrollToTop";
+import AdminDashboard from "./components/AdminDashboard";
 import "./index.css";
 
 function App() {
@@ -38,6 +39,7 @@ const showFooter = location.pathname !== "/checkout";
           <Route path="/contact" element={<Contact />} />
           <Route path="/track-order" element={<TrackOrder />} />
           <Route path="/order-success" element={<OrderSuccess />} />
+          <Route path="/admin-portal-99" element={<AdminDashboard />} />
         </Routes>
       </main>
       {/* Conditional Rendering: Footer only shows if it's NOT a product page */}

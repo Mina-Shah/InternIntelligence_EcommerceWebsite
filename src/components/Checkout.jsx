@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
+// --- Firebase Imports ---
+import { db } from "./firebase";
+import { ref, push, set } from "firebase/database";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -25,7 +28,6 @@ const CheckoutPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // --- Logic for Form Validation ---
   const isFormValid =
     formData.name &&
     formData.email.includes("@") &&
@@ -33,12 +35,41 @@ const CheckoutPage = () => {
     formData.city &&
     formData.cardNumber.length >= 13;
 
-  const handleSubmit = (e) => {
+  // --- Updated HandleSubmit with Firebase ---
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isFormValid) {
-      // We don't clear the cart here because our OrderSuccess page
-      // will handle the cleanup when it loads!
-      navigate("/order-success");
+      try {
+        // 1. Create a unique reference in 'orders'
+        console.log('order taken')
+        const ordersRef = ref(db, "orders");
+        const newOrderRef = push(ordersRef);
+
+        // 2. Map the order data
+        const orderData = {
+          orderId: newOrderRef.key,
+          customer: {
+            name: formData.name,
+            email: formData.email,
+            address: formData.address,
+            city: formData.city,
+            zip: formData.zip,
+          },
+          items: cart,
+          total: totalPrice,
+          status: "Pending",
+          orderDate: new Date().toISOString(),
+        };
+
+        // 3. Save to Firebase
+        await set(newOrderRef, orderData);
+
+        // 4. Navigate to success
+        navigate("/order-success");
+      } catch (error) {
+        console.error("Firebase Error:", error);
+        alert("Order failed to save. Please check your internet connection.");
+      }
     }
   };
 
