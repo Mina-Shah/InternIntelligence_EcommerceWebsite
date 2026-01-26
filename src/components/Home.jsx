@@ -82,7 +82,7 @@ const Home = () => {
     <>
       <Search />
       {/* 1. HERO SECTION */}
-      <div className="relative h-[60vh] md:h-[96vh] w-full flex items-center justify-center overflow-hidden bg-slate-900">
+      <div className="relative h-[60vh] md:h-[85vh] w-full flex items-center justify-center overflow-hidden bg-slate-900">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -104,7 +104,7 @@ const Home = () => {
             {slides[currentSlide].sub}
           </p>
           <button
-            className="mt-10 mx-auto bg-[#133250] hover:bg-blue-500 text-slate-200 py-4 px-12 rounded-2xl font-black text-lg transition-all shadow-xl active:scale-95"
+            className="mt-10 mx-auto bg-[#133250] hover:bg-blue-500 text-slate-200 py-4 px-7 rounded-2xl font-semibold text-lg transition-all shadow-xl active:scale-95"
             onClick={() => navigate("/products")}
           >
             Shop Collection
